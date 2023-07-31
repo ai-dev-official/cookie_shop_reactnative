@@ -4,7 +4,7 @@ import {View, Animated, Text, StyleSheet, Easing, StatusBar} from 'react-native'
 const BouncingBallAnimation = ({navigation}) => {
   const [ballColorIndex, setBallColorIndex] = useState(0);
   const texts = ['AI', 'Dev', 'Official', ':)'];
-  const colors = ['#2358e6', '#e58d2c', '#27c05f', '#df4b20'];
+  const colors = ['#2358e6cc', '#e58d2ccc', '#1bc03ccc', '#df4b20cc'];
 
   const translateYAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -112,6 +112,7 @@ const BouncingBallAnimation = ({navigation}) => {
 
   const textStyle = {
     opacity: textAnimationOpacity,
+    fontFamily: 'Oufit-Regular',
   };
 
   const textContainerStyle = {
@@ -121,7 +122,8 @@ const BouncingBallAnimation = ({navigation}) => {
     right: 0,
     textAlign: 'center',
     fontSize: 20,
-    color: 'white',
+    color: colors.light,
+    fontFamily: 'Oufit-Regular',
   };
 
   return (
@@ -141,10 +143,10 @@ const BouncingBallAnimation = ({navigation}) => {
         <Animated.Text
           style={[textStyle, {
             marginHorizontal: wordSpacingAnim,
-            fontSize: 24,
+            fontSize: 32,
             textAlign: 'center',
             color: 'white',
-            fontWeight:'900'
+            fontFamily: 'Oufit-Regular',
           }]}>
           {texts[ballColorIndex % texts.length]}
         </Animated.Text>
@@ -158,14 +160,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#131c28',
+    backgroundColor: '#28292d',
   },
   ball: {
-    height: 20,
-    width: 20,
-    borderRadius: 10,
+    height: 50,
+    width: 50,
+    borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth:1,
+    borderColor: 'yellow',
   },
   ballTop: {
     position: 'absolute',
@@ -180,14 +184,11 @@ const styles = StyleSheet.create({
   },
   phrase: {
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: 32,
     textAlign: 'center',
-    // position: 'absolute',
-    // bottom: '50%',
-    // left: 0,
-    // right: 0,
     color: 'white',
     letterSpacing: 5,
+    fontFamily: 'Oufit-Regular',
   },
 });
 

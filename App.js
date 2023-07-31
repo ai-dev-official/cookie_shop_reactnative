@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthContext} from './components/Modules/context';
 import RootStackScreen from './navigation/RootStackScreen';
 
+
 const Stack = createStackNavigator();
 
 const {LightTheme, DarkTheme} = adaptNavigationTheme({
@@ -26,8 +27,6 @@ const {LightTheme, DarkTheme} = adaptNavigationTheme({
   reactNavigationDark: NavigationDarkTheme,
 });
 
-// const CombinedDefaultTheme = merge(MD3LightTheme, LightTheme);
-// const CombinedDarkTheme = merge(MD3DarkTheme, DarkTheme);
 
 const CombinedDefaultTheme = {
   ...MD3LightTheme,
@@ -44,7 +43,9 @@ const CombinedDefaultTheme = {
     iconcontainer: '#34373e',
     background: '#28292d',
     label: '#565a62',
-    dark: '#000000'
+    dark: '#000000',
+    transparent: '#00000000',
+    lightGray: '#D3D3D3'
   },
 };
 const CombinedDarkTheme = {
@@ -62,11 +63,14 @@ const CombinedDarkTheme = {
     iconcontainer: '#34373e',
     background: '#28292d',
     label: '#565a62',
-    dark: '#000000'
+    dark: '#000000',
+    transparent: '#00000000',
+    lightGray: '#D3D3D3',
   },
 };
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [isThemeDark, setIsThemeDark] = useState(false);
 
   const initialLoginState = {
@@ -178,12 +182,16 @@ const App = () => {
     }, 1000);
   }, []);
 
-  if (loginState.isLoading) {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+  
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
+  if (isLoading) {
+    return <BouncingBallAnimation />;
   }
 
   return (

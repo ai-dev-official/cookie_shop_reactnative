@@ -8,13 +8,14 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Cookie1 from '../../assets/images/cookie1.webp';
 import Cookie2 from '../../assets/images/cookie2.webp';
 import Cookie3 from '../../assets/images/cookie3.webp';
-import Arrow from 'react-native-vector-icons/FontAwesome6'
+import Arrow from 'react-native-vector-icons/FontAwesome6';
 import Crown from 'react-native-vector-icons/MaterialCommunityIcons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
   const theme = useTheme();
   const {colors} = useTheme();
-  const [isLoading, setIsLoading] = useState(true); // State to manage loading
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -85,6 +86,7 @@ const HomeScreen = () => {
       backgroundColor: colors.dark,
       justifyContent: 'center',
       alignItems: 'center',
+      zIndex: 9,
     },
 
     headerIcon: {
@@ -142,14 +144,14 @@ const HomeScreen = () => {
       marginBottom: 20,
     },
 
-    productLeft:{
+    productLeft: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       marginRight: 40,
     },
 
-    productRight:{
+    productRight: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -162,9 +164,9 @@ const HomeScreen = () => {
       zIndex: 1,
     },
 
-    productDesc:{
+    productDesc: {
       width: 155,
-      height: 170,
+      height: 160,
       backgroundColor: colors.secondary,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
@@ -173,18 +175,18 @@ const HomeScreen = () => {
       padding: 20,
       paddingTop: 40,
     },
-    descText1:{
+    descText1: {
       fontSize: 20,
       color: colors.light,
       fontFamily: 'Outfit-Regular',
     },
-    descText2:{
+    descText2: {
       fontSize: 20,
       lineHeight: 20,
       color: colors.light,
       fontFamily: 'Outfit-Regular',
     },
-    descView:{
+    descView: {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
@@ -198,32 +200,32 @@ const HomeScreen = () => {
       color: colors.primary,
       marginRight: 5,
     },
-    premium:{
+    premium: {
       fontSize: 12,
       color: colors.primary,
       textTransform: 'uppercase',
       fontFamily: 'Outfit-Regular',
     },
-    price:{
-      color:colors.light,
+    price: {
+      color: colors.light,
       textTransform: 'uppercase',
       fontFamily: 'Outfit-Bold',
       fontSize: 18,
-      lineHeight:18,
+      lineHeight: 18,
     },
-    priceCancel:{
-      color:colors.light,
+    priceCancel: {
+      color: colors.light,
       textTransform: 'uppercase',
       textDecorationLine: 'line-through',
     },
-    descpricearrow:{
+    descpricearrow: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
     },
 
-    arrowButton:{
+    arrowButton: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -232,9 +234,10 @@ const HomeScreen = () => {
       borderRadius: 25,
       backgroundColor: colors.dark,
       right: -22,
+      bottom: -5,
     },
 
-    offersArrowButton:{
+    offersArrowButton: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -246,12 +249,12 @@ const HomeScreen = () => {
       bottom: -40,
     },
 
-    arrowIcon:{
+    arrowIcon: {
       color: colors.light,
       alignSelf: 'center',
     },
 
-    offersView:{
+    offersView: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -265,7 +268,7 @@ const HomeScreen = () => {
       zIndex: 1,
     },
 
-    offersDesc:{
+    offersDesc: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -280,34 +283,31 @@ const HomeScreen = () => {
       padding: 20,
     },
 
-    descText:{
+    descText: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
     },
 
-    offersdescpricearrow:{
+    offersdescpricearrow: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'flex-end',
       alignItems: 'flex-end',
     },
 
-   prices:{
+    prices: {
       alignSelf: 'flex-end',
       marginBottom: -10,
-   }
-
+    },
   });
 
   return (
     <View style={styles.container}>
-      <StatusBar
-        backgroundColor={colors.background}
-        barStyle='dark-content'
-      />
-      <View style={styles.headerView}>
+      <StatusBar backgroundColor={colors.background} barStyle="dark-content" />
+     <SafeAreaView>
+     <View style={styles.headerView}>
         <View style={styles.headerRight}>
           <Image source={User} style={styles.userImage} />
           <View>
@@ -316,9 +316,15 @@ const HomeScreen = () => {
           </View>
         </View>
         <View style={styles.headerLeft}>
-          <TouchableOpacity style={styles.bagView}>
-            <Feather name="shopping-bag" size={20} style={styles.headerIcon} />
-          </TouchableOpacity>
+          <View style={styles.bagView}>
+            <TouchableOpacity>
+              <Feather
+                name="shopping-bag"
+                size={20}
+                style={styles.headerIcon}
+              />
+            </TouchableOpacity>
+          </View>
           <Text style={styles.count}>6</Text>
           <Text style={styles.bagText}>Products</Text>
         </View>
@@ -339,22 +345,20 @@ const HomeScreen = () => {
             <Text style={styles.descText1}>Chocolate</Text>
             <Text style={styles.descText2}>chips</Text>
             <View style={styles.descView}>
-              <Crown
-                  name="crown-outline"
-                  size={18}
-                  style={styles.crownIcon}
-                />
+              <Crown name="crown-outline" size={18} style={styles.crownIcon} />
               <Text style={styles.premium}>Premium</Text>
             </View>
             <View style={styles.descpricearrow}>
               <Text style={styles.price}>20 USD</Text>
-              <View style={styles.arrowButton}>
-                <Arrow
-                  name="arrow-right-long"
-                  size={14}
-                  style={styles.arrowIcon}
-                />
-              </View>
+              <TouchableOpacity style={styles.arrowButton}>
+                <View>
+                  <Arrow
+                    name="arrow-right-long"
+                    size={14}
+                    style={styles.arrowIcon}
+                  />
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -364,22 +368,20 @@ const HomeScreen = () => {
             <Text style={styles.descText1}>Oatmeal</Text>
             <Text style={styles.descText2}>with raisins</Text>
             <View style={styles.descView}>
-              <Crown
-                  name="crown-outline"
-                  size={18}
-                  style={styles.crownIcon}
-                />
+              <Crown name="crown-outline" size={18} style={styles.crownIcon} />
               <Text style={styles.premium}>Premium</Text>
             </View>
             <View style={styles.descpricearrow}>
               <Text style={styles.price}>16 USD</Text>
-              <View style={styles.arrowButton}>
-                <Arrow
-                  name="arrow-right-long"
-                  size={14}
-                  style={styles.arrowIcon}
-                />
-              </View>
+              <TouchableOpacity  style={styles.arrowButton}>
+                <View>
+                  <Arrow
+                    name="arrow-right-long"
+                    size={14}
+                    style={styles.arrowIcon}
+                  />
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -394,34 +396,33 @@ const HomeScreen = () => {
       </View>
       <View style={styles.offersView}>
         <View style={styles.offersDesc}>
-            <Image source={Cookie2} style={styles.cookie3} />
-            <View style={styles.descText}>
-              <Text style={styles.descText1}>Chocolate</Text>
-                <Text style={styles.descText2}>chips</Text>
-                <View style={styles.descView}>
-                  <Crown
-                      name="crown-outline"
-                      size={18}
-                      style={styles.crownIcon}
-                    />
-                  <Text style={styles.premium}>Premium</Text>
-                </View>
+          <Image source={Cookie2} style={styles.cookie3} />
+          <View style={styles.descText}>
+            <Text style={styles.descText1}>Chocolate</Text>
+            <Text style={styles.descText2}>chips</Text>
+            <View style={styles.descView}>
+              <Crown name="crown-outline" size={18} style={styles.crownIcon} />
+              <Text style={styles.premium}>Premium</Text>
             </View>
-              <View style={styles.offersdescpricearrow}>
-               <View style={styles.prices}>
-                  <Text style={styles.priceCancel}>20 USD</Text>
-                  <Text style={styles.price}>12 USD</Text>
-               </View>
-                <View style={styles.offersArrowButton}>
-                  <Arrow
-                    name="arrow-right-long"
-                    size={14}
-                    style={styles.arrowIcon}
-                  />
-                </View>
+          </View>
+          <View style={styles.offersdescpricearrow}>
+            <View style={styles.prices}>
+              <Text style={styles.priceCancel}>20 USD</Text>
+              <Text style={styles.price}>12 USD</Text>
+            </View>
+            <TouchableOpacity style={styles.offersArrowButton}>
+              <View>
+                <Arrow
+                  name="arrow-right-long"
+                  size={14}
+                  style={styles.arrowIcon}
+                />
               </View>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
+     </SafeAreaView>
     </View>
   );
 };
