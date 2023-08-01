@@ -18,22 +18,25 @@ import {useTheme} from 'react-native-paper';
 import BoxSvg from '../../assets/svg/BoxSvg';
 import DotIcon from 'react-native-vector-icons/Octicons';
 import CirclesModule from '../Modules/circles';
+import CirclesModule1 from '../Modules/circles1';
+import CirclesModule2 from '../Modules/circles2';
+import CirclesModule3 from '../Modules/circles3';
 
 
-const PremiumScreen = () => {
+const PremiumScreen = ({navigation}) => {
   const theme = useTheme();
   const {colors} = useTheme();
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 3000);
+  // }, []);
 
-  if (isLoading) {
-    return <BouncingBallAnimation />;
-  }
+  // if (isLoading) {
+  //   return <BouncingBallAnimation />;
+  // }
 
   const styles = StyleSheet.create({
     container: {
@@ -91,6 +94,14 @@ const PremiumScreen = () => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      elevation: 1,
+      shadowColor: colors.light,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.16,
+      shadowRadius: 1,
     },
 
     bagView: {
@@ -102,6 +113,14 @@ const PremiumScreen = () => {
       justifyContent: 'center',
       alignItems: 'center',
       zIndex: 9,
+      elevation: 1,
+      shadowColor: colors.light,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.16,
+      shadowRadius: 1,
     },
 
     headerIcon: {
@@ -128,7 +147,7 @@ const PremiumScreen = () => {
       width: 50,
       height: 50,
       borderRadius: 25,
-      backgroundColor: colors.light,
+      backgroundColor: colors.white,
       bottom: -5,
       marginRight: 20,
     },
@@ -158,13 +177,13 @@ const PremiumScreen = () => {
       justifyContent: 'space-between',
     },
     underText1: {
-      color: colors.light,
+      color: colors.white,
       fontFamily: 'Outfit-Regular',
       fontSize: 98,
       marginBottom: -10,
     },
     underText2: {
-      color: colors.light,
+      color: colors.white,
       fontFamily: 'Outfit-Regular',
       fontSize: 36,
       marginTop: -10,
@@ -176,11 +195,6 @@ const PremiumScreen = () => {
       justifyContent: 'flex-end',
     },
 
-    seeMore: {
-      color: colors.primary,
-      fontFamily: 'Outfit-Regular',
-      fontSize: 16,
-    },
     buttonView: {
       display: 'flex',
       justifyContent: 'flex-start',
@@ -197,40 +211,48 @@ const PremiumScreen = () => {
       justifyContent: 'space-between',
       alignItems: 'center',
       borderWidth: 1,
-      borderColor: colors.light,
+      borderColor: colors.white,
     },
     buttonText: {
-      color: colors.light,
+      color: colors.white,
       fontFamily: 'Outfit-Medium',
       fontSize: 20,
     },
     bookIcon: {
-      color: colors.light,
+      color: colors.white,
       marginRight: 20,
     },
     cookiesItem: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: 110,
-      height: 180,
-      left: -130,
-      bottom: -150,
-      borderRadius: 20,
+      width: 70,
+      height: 120,
+      left: -100,
+      bottom: -100,
+      borderRadius: 15,
+      paddingVertical: 20,
       backgroundColor: colors.light,
+      elevation: 1,
+      shadowColor: colors.light,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.16,
+      shadowRadius: 1,
     },
-    cookiesDay: {
-      fontSize: 16,
+    cookiesText: {
+      fontSize: 14,
       color: colors.dark,
-      fontWeight: 'bold',
-      fontFamily: 'Outfit-Medium',
-      fontSize: 20,
-      lineHeight: 22,
+      fontFamily: 'Outfit-Bold',
+      lineHeight: 14,
     },
     cookieTop: {
-      width: 60,
-      height: 60,
-      borderRadius: 30,
+      width: 40,
+      height: 40,
+      padding: 10,
+      borderRadius: 20,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -259,6 +281,7 @@ const PremiumScreen = () => {
       borderRadius: 200,
       borderWidth: 1,
       borderColor: colors.light,
+      borderStyle: 'dashed',
       left: -180,
       bottom: -180,
     },
@@ -270,7 +293,30 @@ const PremiumScreen = () => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: colors.iconcontainer,
+      elevation: 1,
+      shadowColor: colors.light,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.16,
+      shadowRadius: 1,
     },
+    quantity:{
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 150,
+      bottom: -140,
+    },
+    cookiesQuantity:{
+      fontSize: 12,
+      fontFamily: 'Outfit-Medium',
+      color: colors.white,
+      marginLeft: 10,
+      textTransform: 'uppercase'
+    }
   });
 
   return (
@@ -288,7 +334,10 @@ const PremiumScreen = () => {
           <View style={styles.wrapper}>
             <View style={styles.headerView}>
               <View style={styles.headerRight}>
-                <TouchableOpacity style={styles.arrowButton}>
+                <TouchableOpacity 
+                style={styles.arrowButton}
+                onPress={() => navigation.goBack()}
+                >
                   <View>
                     <Arrow
                       name="arrow-left-long"
@@ -306,7 +355,10 @@ const PremiumScreen = () => {
                   <Text style={styles.premium}>Premium</Text>
                 </View>
               </View>
-              <View style={styles.headerLeft}>
+              <TouchableOpacity
+               style={styles.headerLeft}
+               onPress={() => navigation.navigate('ProfileScreen')}
+               >
                 <View style={styles.bagView}>
                   <TouchableOpacity>
                     <Feather
@@ -318,7 +370,7 @@ const PremiumScreen = () => {
                 </View>
                 <Text style={styles.count}>6</Text>
                 <Text style={styles.bagText}>Products</Text>
-              </View>
+              </TouchableOpacity>
             </View>
             <View style={styles.headerUnder}>
               <View style={styles.underRight}>
@@ -336,26 +388,35 @@ const PremiumScreen = () => {
                 <Text style={styles.buttonText}>Information</Text>
               </TouchableOpacity>
             </View>
+
+            <View style={styles.quantity}>
+            <DotIcon name="dot-fill" size={16} style={styles.dotIcon} />
+                <Text style={styles.cookiesQuantity}>select quantity</Text>
+            </View>
             
             <View style={styles.bottomView}>
               <View style={styles.bottomViewWrapper}>
                 <View style={styles.bottomLeft}>
+                  <CirclesModule1  />
                   <CirclesModule  />
+                  <CirclesModule2  />
                 </View>
               </View>
-              <View style={styles.cookiesItem}>
+              <TouchableOpacity 
+                style={styles.cookiesItem}
+              >
                 <View style={styles.cookieTop}>
                   <BoxSvg
                     fill={colors.light}
-                    width={32}
-                    height={32}
+                    width={24}
+                    height={24}
                     viewBox="0 0 56 56"
                   />
                 </View>
-                <DotIcon name="dot-fill" size={20} style={styles.dotIcon} />
-                <Text style={styles.cookiesDay}>Add to</Text>
-                <Text style={styles.cookiesDay}>Order</Text>
-              </View>
+                <DotIcon name="dot-fill" size={18} style={styles.dotIcon} />
+                <Text style={styles.cookiesText}>Add to</Text>
+                <Text style={styles.cookiesText}>Order</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </SafeAreaView>

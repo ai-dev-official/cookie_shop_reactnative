@@ -1,31 +1,32 @@
-import {StyleSheet, Text, View, StatusBar, Image} from 'react-native';
+import {StyleSheet, Text, View, StatusBar, Image,TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import BouncingBallAnimation from './LandingScreen';
 import {useTheme} from 'react-native-paper';
 import User from '../../assets/images/user.jpg';
 import Feather from 'react-native-vector-icons/Feather';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import Cookie1 from '../../assets/images/cookie1.webp';
 import Cookie2 from '../../assets/images/cookie2.webp';
 import Cookie3 from '../../assets/images/cookie3.webp';
 import Arrow from 'react-native-vector-icons/FontAwesome6';
 import Crown from 'react-native-vector-icons/MaterialCommunityIcons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { bgShdow } from '../../assets/bgtheme';
+
 
 const HomeScreen = () => {
   const theme = useTheme();
   const {colors} = useTheme();
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 3000);
+  // }, []);
 
-  if (isLoading) {
-    return <BouncingBallAnimation />;
-  }
+  // if (isLoading) {
+  //   return <BouncingBallAnimation />;
+  // }
 
   const styles = StyleSheet.create({
     container: {
@@ -76,6 +77,14 @@ const HomeScreen = () => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      elevation: 1,
+           shadowColor: colors.light,
+           shadowOffset: {
+             width: 0,
+             height: 1,
+           },
+           shadowOpacity: 0.16,
+           shadowRadius: 1,
     },
 
     bagView: {
@@ -87,6 +96,14 @@ const HomeScreen = () => {
       justifyContent: 'center',
       alignItems: 'center',
       zIndex: 9,
+      elevation: 1,
+           shadowColor: colors.dark,
+           shadowOffset: {
+             width: 0,
+             height: 1,
+           },
+           shadowOpacity: 0.16,
+           shadowRadius: 1,
     },
 
     headerIcon: {
@@ -161,7 +178,15 @@ const HomeScreen = () => {
       width: 130,
       height: 130,
       bottom: -30,
-      zIndex: 1,
+      zIndex: 99,
+      // elevation: 1,
+           shadowColor: colors.light,
+           shadowOffset: {
+             width: 0,
+             height: 1,
+           },
+           shadowOpacity: 0.16,
+           shadowRadius: 1,
     },
 
     productDesc: {
@@ -174,6 +199,14 @@ const HomeScreen = () => {
       borderBottomRightRadius: 80,
       padding: 20,
       paddingTop: 40,
+      elevation: 1,
+           shadowColor: colors.light,
+           shadowOffset: {
+             width: 0,
+             height: 1,
+           },
+           shadowOpacity: 0.16,
+           shadowRadius: 1,
     },
     descText1: {
       fontSize: 20,
@@ -214,6 +247,8 @@ const HomeScreen = () => {
       lineHeight: 18,
     },
     priceCancel: {
+      fontSize: 18,
+      lineHeight: 18,
       color: colors.light,
       textTransform: 'uppercase',
       textDecorationLine: 'line-through',
@@ -235,6 +270,14 @@ const HomeScreen = () => {
       backgroundColor: colors.dark,
       right: -22,
       bottom: -5,
+      elevation: 1,
+           shadowColor: colors.light,
+           shadowOffset: {
+             width: 0,
+             height: 1,
+           },
+           shadowOpacity: 0.16,
+           shadowRadius: 1,
     },
 
     offersArrowButton: {
@@ -247,6 +290,14 @@ const HomeScreen = () => {
       backgroundColor: colors.dark,
       right: -22,
       bottom: -40,
+      elevation: 1,
+           shadowColor: colors.light,
+           shadowOffset: {
+             width: 0,
+             height: 1,
+           },
+           shadowOpacity: 0.16,
+           shadowRadius: 1,
     },
 
     arrowIcon: {
@@ -281,6 +332,14 @@ const HomeScreen = () => {
       borderBottomLeftRadius: 20,
       borderBottomRightRadius: 80,
       padding: 20,
+      elevation: 1,
+           shadowColor: colors.light,
+           shadowOffset: {
+             width: 0,
+             height: 1,
+           },
+           shadowOpacity: 0.16,
+           shadowRadius: 1,
     },
 
     descText: {

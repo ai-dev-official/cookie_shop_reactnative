@@ -3,7 +3,7 @@ import {View, Animated, Text, StyleSheet, Easing, StatusBar} from 'react-native'
 
 const BouncingBallAnimation = ({navigation}) => {
   const [ballColorIndex, setBallColorIndex] = useState(0);
-  const texts = ['AI', 'Dev', 'Official', ':)'];
+  const texts = ['AI', 'Dev', 'Official',];
   const colors = ['#2358e6cc', '#e58d2ccc', '#1bc03ccc', '#df4b20cc'];
 
   const translateYAnim = useRef(new Animated.Value(0)).current;

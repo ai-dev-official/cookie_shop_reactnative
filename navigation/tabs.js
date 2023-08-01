@@ -47,16 +47,6 @@ const Tabs = () => {
   const {colors} = useTheme();
 
   const styles = StyleSheet.create({
-    shadow: {
-      shadowColor: colors.black,
-      shadowOffset: {
-        width: 0,
-        height: 10,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.5,
-      elevation: 5,
-    },
 
     viewContainer: {
       top: -30,
@@ -66,6 +56,14 @@ const Tabs = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      elevation: 1,
+           shadowColor: colors.light,
+           shadowOffset: {
+             width: 0,
+             height: 1,
+           },
+           shadowOpacity: 0.16,
+           shadowRadius: 1,
     },
 
     iconContainer: {
@@ -117,13 +115,20 @@ const Tabs = () => {
           bottom: -10,
           left: 0,
           right: 0,
-          elevation: 0,
+          // elevation: 0,
           color: colors.label,
           backgroundColor: colors.tertiary,
           borderTopLeftRadius: 40,
           borderTopRightRadius: 40,
           height: 70,
-          ...styles.shadow,
+          elevation: 1,
+           shadowColor: colors.light,
+           shadowOffset: {
+             width: 0,
+             height: 1,
+           },
+           shadowOpacity: 0.16,
+           shadowRadius: 1,
         },
 
         headerStyle: {

@@ -19,23 +19,24 @@ import CloseIcon from 'react-native-vector-icons/AntDesign';
 import CookieIcon from 'react-native-vector-icons/FontAwesome6';
 import Cookie from 'react-native-vector-icons/FontAwesome6';
 import Cookie1 from 'react-native-vector-icons/MaterialIcons';
+import Arrow from 'react-native-vector-icons/FontAwesome6';
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
   const theme = useTheme();
   const {colors} = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [showSearch, toggleSearch] = useState(false);
   const [locations, setLocations] = useState([1, 2, 3]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 3000);
+  // }, []);
 
-  if (isLoading) {
-    return <BouncingBallAnimation />;
-  }
+  // if (isLoading) {
+  //   return <BouncingBallAnimation />;
+  // }
 
   const handleLocation = loc => {
     console.log('location; ', loc);
@@ -102,13 +103,13 @@ const SearchScreen = () => {
       flex: 1,
     },
     textBold: {
-      color: colors.light,
+      color: colors.white,
       textAlign: 'center',
       fontSize: 20,
       fontWeight: 'bold',
     },
     textRegular: {
-      color: 'gray',
+      color: colors.lightGray,
       fontSize: 16,
       fontWeight: '600',
     },
@@ -131,13 +132,13 @@ const SearchScreen = () => {
     },
     priceAmount: {
       fontSize: 48,
-      color: colors.light,
+      color: colors.white,
       marginLeft: 5,
       fontFamily: 'Outfit-Bold',
     },
     priceSym: {
       fontSize: 48,
-      color: colors.light,
+      color: colors.white,
       // letterSpacing: 2,
       fontFamily: 'Outfit-Bold',
     },
@@ -151,7 +152,7 @@ const SearchScreen = () => {
       alignItems: 'center',
     },
     statText: {
-      color: colors.light,
+      color: colors.white,
       fontSize: 16,
       marginLeft: 8,
       fontWeight: 'bold',
@@ -168,7 +169,7 @@ const SearchScreen = () => {
     },
     cookiesHeaderText: {
       fontSize: 18,
-      color: colors.light,
+      color: colors.white,
       marginLeft: 8,
     },
     cookiesScrollView: {
@@ -183,6 +184,14 @@ const SearchScreen = () => {
       borderRadius: 20,
       backgroundColor: colors.iconcontainer,
       zIndex: -1,
+      elevation: 1,
+      shadowColor: colors.light,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.16,
+      shadowRadius: 1,
     },
     cookiesDay: {
       fontSize: 16,
@@ -200,6 +209,25 @@ const SearchScreen = () => {
       width: 50,
       height: 50,
       marginBottom: 10,
+    },
+    arrowButton: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+      backgroundColor: colors.white,
+      marginTop: -60,
+      marginRight: 20,
+      elevation: 1,
+      shadowColor: colors.light,
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.16,
+      shadowRadius: 1,
     },
   });
 
@@ -262,12 +290,26 @@ const SearchScreen = () => {
                         size={20}
                         style={{marginRight: 20}}
                       />
-                      <Text style={styles.locText}>London, United Kingdom</Text>
+                      <Text style={styles.locText}>Chocolate, Chip Cookie</Text>
                     </TouchableOpacity>
                   );
                 })}
               </View>
-            ) : null}
+            ) : (
+              <View style={styles.headerRight}>
+                <TouchableOpacity
+                  style={styles.arrowButton}
+                  onPress={() => navigation.goBack()}>
+                  <View>
+                    <Arrow
+                      name="arrow-left-long"
+                      size={14}
+                      style={styles.arrowIcon}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </View>
+            )}
             {/* API Section */}
             <View style={styles.apiwrapper}>
               <Text style={styles.textBold}>

@@ -18,6 +18,8 @@ import Tabs from './navigation/tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthContext} from './components/Modules/context';
 import RootStackScreen from './navigation/RootStackScreen';
+import ProfileScreen from './components/Screens/ProfileScreen';
+
 
 
 const Stack = createStackNavigator();
@@ -34,18 +36,20 @@ const CombinedDefaultTheme = {
   colors: {
     ...MD3LightTheme.colors,
     ...LightTheme.colors,
-    primary: '#e38035',
-    secondary: '#343740',
-    light: '#ffffff',
-    tertiary: '#141519',
-    primaryAlt: '#000000',
-    buttonColor: '#010101',
-    iconcontainer: '#34373e',
-    background: '#28292d',
-    label: '#565a62',
-    dark: '#000000',
-    transparent: '#00000000',
-    lightGray: '#D3D3D3'
+    "primary": "#ffaa77",
+    "secondary": "#e0e0e0",
+    "light": "#000000",
+    "tertiary": "#d9d9e0",
+    "primaryAlt": "#ffffff",
+    "buttonColor": "#f0f0f0",
+    "iconcontainer": "#e0e0e5",
+    "background": "#f5f5f5",
+    "label": "#9e9e9e",
+    "dark": "#ffffff",
+    "transparent": "#00000000",
+    "lightGray": "#f0f0f0",
+    "white":'#ffffff',
+    placeholder:'#666666',
   },
 };
 const CombinedDarkTheme = {
@@ -66,6 +70,8 @@ const CombinedDarkTheme = {
     dark: '#000000',
     transparent: '#00000000',
     lightGray: '#D3D3D3',
+    white:'#ffffff',
+    placeholder:'#666666',
   },
 };
 
@@ -200,11 +206,18 @@ const App = () => {
         <NavigationContainer theme={theme}>
           <Stack.Navigator>
             {loginState.userToken !== null ? (
+              <>
               <Stack.Screen
                 name="Tabs"
                 component={Tabs}
                 options={{tabBarVisible: false, headerShown: false}}
               />
+              <Stack.Screen
+                    name="ProfileScreen"
+                    component={ProfileScreen}
+                    options={{tabBarVisible: false, headerShown: false}}
+                  />
+                  </>
             ) : (
               <Stack.Screen
                 name="RootStack"
